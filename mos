@@ -1,0 +1,37 @@
+while u<len(datas):
+      user_data = list(datas[u])
+      if user_data[1] == username:
+        if user_data[2] == sumbingsumbingan:
+          ids.append(user_data[0])
+          messageidlol.append(user_data[3])
+      u = u + 1
+    messageidlolhaghag = []
+    idssss = []
+    u = 0
+    while u<len(datas):
+      user_data = list(datas[u])
+      if user_data[1] == sumbingsumbingan:
+        if user_data[2] == username:
+          idssss.append(user_data[0])
+          messageidlolhaghag.append(user_data[3])
+      u = u + 1
+
+if len(messageidlol) == 0:
+      if len(messageidlolhaghag) == 0:
+        messageids = 1
+      elif len(messageidlol) > len(messageidlolhaghag):
+        messageids = int(messageidlol[-1]) + 1
+      else:
+        messageids = int(messageidlolhaghag[-1]) + 1
+    elif len(messageidlolhaghag) == 0:
+      if len(messageidlol) == 0:
+        messageids = int(messageidlol[-1]) + 1
+      elif len(messageidlolhaghag) > len(messageidlol):
+        messageids = int(messageidlolhaghag[-1]) + 1
+      else:
+        messageids = int(messageidlol[-1]) + 1
+    else:
+      if messageidlol[-1] > messageidlolhaghag[-1]:
+        messageids = int(messageidlol[-1]) + 1
+      else:
+        messageids = int(messageidlolhaghag[-1]) + 1
