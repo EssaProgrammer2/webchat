@@ -4,7 +4,7 @@ function setlocalstorage(name, valuess){
 }
 
 document.getElementById("loginbtn").addEventListener("click", () => {
-fetch('https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/get/all/userdata', {method: "GET"})
+fetch('https://essaprogrammer2.pythonanywhere.com/get/all/userdata', {method: "GET"})
     .then(response => response.json())
     .then(data => {
         let allusernames = []

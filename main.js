@@ -37,7 +37,7 @@ function setlocalstorage(name, valuess){
 
 document.getElementById("chating").addEventListener("click", () => {
     if (selectedorang != ""){
-        fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/post/chat/username=${getlocalstorage("username")}&password=${getlocalstorage("password")}&haghagjiso=${selectedorang}&message=${document.getElementById("buatnulis").value}`, {method: "GET"})
+        fetch(`https://essaprogrammer2.pythonanywhere.com/post/chat/username=${getlocalstorage("username")}&password=${getlocalstorage("password")}&haghagjiso=${selectedorang}&message=${document.getElementById("buatnulis").value}`, {method: "GET"})
     .then(response => response.json())
     .then(data => {
         document.getElementById("buatnulis").value = ""
@@ -52,7 +52,7 @@ let mycontact = []
 document.getElementById("buatnulis").addEventListener("keyup", (e) => {
     if (selectedorang != ""){
       if (e.keyCode == 13){
-            fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/post/chat/username=${getlocalstorage("username")}&password=${getlocalstorage("password")}&haghagjiso=${selectedorang}&message=${document.getElementById("buatnulis").value}`, {method: "GET"})
+            fetch(`https://essaprogrammer2.pythonanywhere.com/post/chat/username=${getlocalstorage("username")}&password=${getlocalstorage("password")}&haghagjiso=${selectedorang}&message=${document.getElementById("buatnulis").value}`, {method: "GET"})
         .then(response => response.json())
         .then(data => {
           document.getElementById("buatnulis").value = ""
@@ -64,7 +64,7 @@ document.getElementById("buatnulis").addEventListener("keyup", (e) => {
 
 document.getElementById("addcon").addEventListener("click", () => {
     let = inputancontact = prompt("username: ")
-    fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/post/friend/myusername=${getlocalstorage("username")}&username=${inputancontact}`, {method: "POST"})
+    fetch(`https://essaprogrammer2.pythonanywhere.com/post/friend/myusername=${getlocalstorage("username")}&username=${inputancontact}`, {method: "POST"})
     .then(response => response.json())
     .then(data => {
         if (data == "berhasil"){
@@ -76,7 +76,7 @@ document.getElementById("addcon").addEventListener("click", () => {
 
 document.getElementById("remcon").addEventListener("click", () => {
     let = inputancontact = prompt("username: ")
-    fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/post/delfriends/myusername=${getlocalstorage("username")}&username=${inputancontact}`, {method: "POST"})
+    fetch(`https://essaprogrammer2.pythonanywhere.com/post/delfriends/myusername=${getlocalstorage("username")}&username=${inputancontact}`, {method: "POST"})
     .then(response => response.json())
     .then(data => {
         if (data == "berhasil"){
@@ -86,7 +86,7 @@ document.getElementById("remcon").addEventListener("click", () => {
     .catch(error => console.error(error));
 })
 
-fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/get/userdata/username=${getlocalstorage("username")}`, {method: "GET"})
+fetch(`https://essaprogrammer2.pythonanywhere.com/get/userdata/username=${getlocalstorage("username")}`, {method: "GET"})
     .then(response => response.json())
     .then(data => {
         for(let i = 0; i < data.friends.length; i++){
@@ -112,7 +112,7 @@ let newelmy = ""
 
 setInterval(() => {
     if (selectedorang != ""){
-    fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/get/chat/username=${getlocalstorage("username")}&penerima=${selectedorang}`, {method: "GET"})
+    fetch(`https://essaprogrammer2.pythonanywhere.com/get/chat/username=${getlocalstorage("username")}&penerima=${selectedorang}`, {method: "GET"})
     .then(response => response.json())
     .then(data => {
         mymessagess = []

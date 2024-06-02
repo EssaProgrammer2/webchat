@@ -4,7 +4,7 @@ function setlocalstorage(name, valuess){
 }
 
 document.getElementById("singups").addEventListener("click", () => {
-    fetch(`https://07ad9488-0f71-4960-8b36-a357e97d0a73-00-259lc2ps6fkfa.picard.replit.dev/post/register/username=${document.getElementById("userinput").value}&password=${document.getElementById("passinput").value}&email=${document.getElementById("emailinput").value}`, {method: "POST"})
+    fetch(`https://essaprogrammer2.pythonanywhere.com/post/register/username=${document.getElementById("userinput").value}&password=${document.getElementById("passinput").value}&email=${document.getElementById("emailinput").value}`, {method: "POST"})
     .then(response => response.json())
     .then(data => {
        if (data == "berhasil"){
