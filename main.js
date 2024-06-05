@@ -1,3 +1,7 @@
+let selectedorang = ""
+let mycontact = []
+
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
@@ -34,9 +38,37 @@ function setlocalstorage(name, valuess){
     const xdxdlololol = window.localStorage.setItem(name, valuess)
     return xdxdlololol
 }
-
+if (window.localStorage.getItem("username").length == 0){
+    document.getElementById("namany").textContent = "belum login"
+    const newel = document.createElement("option")
+    newel.textContent = "sign up"
+    const newel2 = document.createElement("option")
+    newel2.textContent = "login"
+    document.getElementById("divapainiya").append(newel)
+    document.getElementById("divapainiya").append(newel2)
+    document.getElementById("divapainiya").addEventListener("change", () => {
+        if (document.getElementById("divapainiya").value == "sign up"){
+            window.location.replace("singup.html")
+        }else if (document.getElementById("divapainiya").value == "login"){
+            window.location.replace("login.html")
+        }
+    })
+}else{
+    document.getElementById("namany").textContent = getlocalstorage("username")
+    const newel = document.createElement("option")
+    newel.textContent = "sign out"
+    document.getElementById("divapainiya").append(newel)
+    document.getElementById("divapainiya").addEventListener("change", () => {
+        if (document.getElementById("divapainiya").value == "sign out"){
+            setlocalstorage("username", "")
+            setlocalstorage("password", "")
+            window.location.reload()
+        }
+    })
+}
 document.getElementById("chating").addEventListener("click", () => {
     if (selectedorang != ""){
+        if (document.getElementById("buatnulis").value != ""){
         fetch(`https://essaprogrammer2.pythonanywhere.com/post/chat/username=${getlocalstorage("username")}&password=${getlocalstorage("password")}&haghagjiso=${selectedorang}&message=${document.getElementById("buatnulis").value}`, {method: "GET"})
     .then(response => response.json())
     .then(data => {
@@ -44,26 +76,26 @@ document.getElementById("chating").addEventListener("click", () => {
     })
     .catch(error => console.error(error));
 }
+}
 })
-
-let selectedorang = ""
-let mycontact = []
-
 document.getElementById("buatnulis").addEventListener("keyup", (e) => {
     if (selectedorang != ""){
       if (e.keyCode == 13){
+        if (document.getElementById("buatnulis").value != ""){
             fetch(`https://essaprogrammer2.pythonanywhere.com/post/chat/username=${getlocalstorage("username")}&password=${getlocalstorage("password")}&haghagjiso=${selectedorang}&message=${document.getElementById("buatnulis").value}`, {method: "GET"})
         .then(response => response.json())
         .then(data => {
           document.getElementById("buatnulis").value = ""
         })
         .catch(error => console.error(error));
+    }
       }
     }
   })
 
 document.getElementById("addcon").addEventListener("click", () => {
     let = inputancontact = prompt("username: ")
+    if (inputancontact != "" && inputancontact != null){
     fetch(`https://essaprogrammer2.pythonanywhere.com/post/friend/myusername=${getlocalstorage("username")}&username=${inputancontact}`, {method: "POST"})
     .then(response => response.json())
     .then(data => {
@@ -72,10 +104,12 @@ document.getElementById("addcon").addEventListener("click", () => {
         }
     })
     .catch(error => console.error(error));
+}
 })
 
 document.getElementById("remcon").addEventListener("click", () => {
     let = inputancontact = prompt("username: ")
+    if (inputancontact != "" && inputancontact != null){
     fetch(`https://essaprogrammer2.pythonanywhere.com/post/delfriends/myusername=${getlocalstorage("username")}&username=${inputancontact}`, {method: "POST"})
     .then(response => response.json())
     .then(data => {
@@ -84,6 +118,7 @@ document.getElementById("remcon").addEventListener("click", () => {
         }
     })
     .catch(error => console.error(error));
+}
 })
 
 fetch(`https://essaprogrammer2.pythonanywhere.com/get/userdata/username=${getlocalstorage("username")}`, {method: "GET"})
@@ -108,13 +143,14 @@ let mymessagessid = []
 let orangmessagesids = []
 let orangmessagess = []
 let lastedselectedorang = ""
-let newelmy = ""
-
+let newelmy = document.getElementById("thecon")
 setInterval(() => {
     if (selectedorang != ""){
+        //console.log(`https://essaprogrammer2.pythonanywhere.com/get/chat/username=${getlocalstorage("username")}&penerima=${selectedorang}`)
     fetch(`https://essaprogrammer2.pythonanywhere.com/get/chat/username=${getlocalstorage("username")}&penerima=${selectedorang}`, {method: "GET"})
     .then(response => response.json())
     .then(data => {
+        if (data.penerima == selectedorang){
         mymessagess = []
         mymessagessid = []
         let pengirimm = []
@@ -123,23 +159,26 @@ setInterval(() => {
             mymessagess.push(data.message[i])
             pengirimm.push(data.pengirim[i])
         }
-        if (document.getElementById("containerchat").childElementCount != 0){
-            document.getElementById("containerchat").removeChild(newelmy)
-        }
+        //if (document.getElementById("containerchat").childElementCount != 0){
+          //  document.getElementById("containerchat").removeChild(newelmy)
+        //}
+        newelmy.innerHTML = ""
         const thefinallengh = mymessagessid.length
         let realtimechat = []
+        //console.log(mymessagess)
         for(let i = 0; i < thefinallengh; i++){
-            if (mymessagessid.includes(String(i + 1))){
-                realtimechat.push(pengirimm[mymessagessid.indexOf(String(i + 1))] + ": " + mymessagess[mymessagessid.indexOf(String(i + 1))])
+            if (mymessagessid.includes(String(i))){
+                realtimechat.push(pengirimm[mymessagessid.indexOf(String(i))] + ": " + mymessagess[mymessagessid.indexOf(String(i))])
             }
         }
-        newelmy = document.createElement("div")
+        //newelmy = document.createElement("div")
         for(let i = 0; i < realtimechat.length; i++){
             const neweltoolololol = document.createElement("div")
             neweltoolololol.textContent = realtimechat[i]
             newelmy.append(neweltoolololol)
             document.getElementById("containerchat").append(newelmy)
         }
+    }
     })
     .catch(error => console.error(error));
     }

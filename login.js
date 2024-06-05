@@ -19,7 +19,11 @@ fetch('https://essaprogrammer2.pythonanywhere.com/get/all/userdata', {method: "G
                 setlocalstorage("username", document.getElementById("userinput").value)
                 setlocalstorage("password", document.getElementById("passinput").value)
                 window.location.replace("index.html")
+            }else {
+                alert("password salah")
             }
+        }else {
+            alert("password salah")
         }
     })
     .catch(error => console.error(error));
