@@ -38,7 +38,7 @@ function setlocalstorage(name, valuess){
     const xdxdlololol = window.localStorage.setItem(name, valuess)
     return xdxdlololol
 }
-if (window.localStorage.getItem("username") == null && window.localStorage.getItem("username") == ""){
+if (window.localStorage.getItem("username") == null || window.localStorage.getItem("username") == ""){
     document.getElementById("namany").textContent = "belum login"
     const newel = document.createElement("option")
     newel.textContent = "sign up"
